@@ -20,4 +20,8 @@ from account.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('myroom/', account),
+    path('login/', login),
+    path('register/', register),
 ]
+
+
