@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-def account(request):
+def index(request):
+    return HttpResponse("Main Page")
+
+def myroom(request):
     return HttpResponse("MyRoom")
 
 def login(request):
