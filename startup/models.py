@@ -3,10 +3,10 @@ from account.models import *
 from django.db import models
 
 from account import models as Startupper
-
+from account.models import Startupper
 
 class Startup(models.Model):
-    starupper_id = models.ForeignKey(account.models.Startupper, on_delete=models.CASCADE)
+    starupper_id = models.ForeignKey(Startupper, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     date_uploaded = models.DateTimeField(auto_now_add=True)
