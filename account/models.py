@@ -19,5 +19,3 @@ class Startupper(models.Model):
 
 
 
-
-

@@ -1,3 +1,7 @@
 from django.contrib import admin
+from account.models import *
+from startup.models import *
 
-# Register your models here.
+admin.site.register(Startup)
+admin.site.register(Startupper)
+admin.site.register(Investor)

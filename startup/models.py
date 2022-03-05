@@ -13,4 +13,9 @@ class Startup(models.Model):
     initial_capital = models.IntegerField()
     accumulated_capital = models.IntegerField()
 
+    def percentage(self):
+        return float('{:.1f}'.format(self.accumulated_capital * 100 / self.initial_capital))
 
+    def s_name(self):
+        s = Startupper.objects.get(id = self.starupper_id_id)
+        return s.first_name + " " + s.last_name

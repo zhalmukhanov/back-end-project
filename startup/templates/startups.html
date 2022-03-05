@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Startups{% endblock %}
+
+{% block body %}
+
+       {% for startup in startups %}
+      <section class="text-gray-600 body-font overflow-hidden mx-auto">
+        <div class="container px-5 py-10 mx-auto">
+          <div class="lg:w-5/5 mx-auto flex flex-wrap">
+            <img alt="ecommerce" class="lg:w-2/5 w-full h-80 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+
+            <div class="lg:w-3/5 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+              <h2 class="text-sm title-font text-gray-500 tracking-widest">{{startup.s_name}}</h2>
+              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{startup.title}}</h1>
+              <p class="leading-relaxed">{{startup.description|truncatewords:40}}</p>
+
+              <div class="mt-6 pb-5 border-b-2 border-gray-100 mb-5">
+                <div class="flex justify-between mb-1">
+                  <span class="text-base font-medium text-indigo-600 dark:text-white">Collected amount</span>
+                  <span class="text-sm font-medium text-indigo-600 dark:text-white">{{ startup.percentage }}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                  <div class="bg-indigo-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: {{startup.percentage}}%">{{startup.accumulated_capital}}$</div>
+                </div>
+              </div>
+
+              <div class="flex">
+                <span class="title-font  text-2xl text-gray-900">Required amount: <span class="font-medium text-indigo-600">{{startup.initial_capital}}$</span></span>
+                <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded">Invest startup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+       {% endfor %}
+
+{% endblock %}
