@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('date_uploaded', models.DateTimeField(auto_now_add=True)),
                 ('initial_capital', models.IntegerField()),
                 ('accumulated_capital', models.IntegerField()),
-                ('starupper_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='account.startupper')),
+                ('startupper_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='account.startupper')),
             ],
         ),
     ]
