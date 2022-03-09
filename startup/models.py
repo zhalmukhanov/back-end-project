@@ -34,14 +34,3 @@ class Startup(models.Model):
         s = Startupper.objects.get(id = self.startupper_id)
         return s.first_name + " " + s.last_name
 
-
-
-class Categories(models.Model):
-    IT = 'IT'
-    Ecology = 'ECO'
-    Electronic = 'ELEC'
-    Health = 'HH'
-    Education = 'ED'
-    Gaming = 'GG'
-    Business = 'BS'
-
