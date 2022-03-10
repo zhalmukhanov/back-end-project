@@ -1,5 +1,7 @@
-
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import DetailView
+
 from startup.models import Startup
 from account.models import Startupper
 
@@ -13,6 +15,10 @@ def startups(request):
     return render(request, 'startups.html', context = context)
 
 def project(request, startup_id):
-    project_list = request.GET.get(startup_id)
-    startup = Startup.objects.get(id=project_list)
-    return render(request, 'startup.html', startup)
+    startup = Startup.objects.get(pk = startup_id)
+    return render(request, 'startup.html', {'startup': startup})
+
+class Project(DetailView):
+    model = Startup
+    template_name = 'startup.html'
+    context_object_name = 'project'

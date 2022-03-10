@@ -3,6 +3,30 @@
 {% block title %}Startups{% endblock %}
 
 {% block body %}
+  <div class="grid justify-items-center">
+      <button onclick="showMenu()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none  py-2 px-7 bg-indigo-600 text-white rounded text-base hover:bg-indigo">Add Startup</button>
+  </div>
+
+  <div id="menu"  class="relative flex justify-center items-center hidden">
+
+  <div class="w-full h-full bg-gray-900 bg-opacity-80 top-0 fixed sticky-0 ">
+    <div class="2xl:container  2xl:mx-auto py-48 px-4 md:px-28 flex justify-center items-center">
+      <div class="w-96 md:w-auto dark:bg-gray-800 relative flex flex-col justify-center items-center bg-white py-16 px-4 md:px-24 xl:py-24 xl:px-36">
+        <div class="mt-12">
+          <h1 role="main" class="text-3xl dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-center text-gray-800">Add startup</h1>
+        </div>
+
+        <button onclick="showMenu()" class="text-gray-800 dark:text-gray-400 absolute top-8 right-8 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" aria-label="close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 6L18 18" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
        {% for startup in startups %}
       <section class="text-gray-600 body-font overflow-hidden mx-auto">
@@ -13,6 +37,7 @@
             <div class="lg:w-3/5 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 class="text-sm title-font text-gray-500 tracking-widest">{{startup.s_name}}</h2>
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{startup.title}}</h1>
+                <span class="inline-flex items-center justify-center mb-2 px-2 py-1 text-xs font-medium leading-none text-indigo-400 border border-indigo-400 rounded">{{ startup.category }}</span>
               <p class="leading-relaxed">{{startup.description|truncatewords:40}}</p>
 
               <div class="mt-6 pb-5 border-b-2 border-gray-100 mb-5">
@@ -27,7 +52,7 @@
 
               <div class="flex">
                 <span class="title-font  text-2xl text-gray-900">Required amount: <span class="font-medium text-indigo-600">{{startup.initial_capital}}$</span></span>
-                <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded">Invest startup</button>
+                <a href="{% url 'project' startup.pk %}" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded">Invest startup</a>
               </div>
             </div>
           </div>

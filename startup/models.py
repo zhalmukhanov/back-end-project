@@ -1,3 +1,5 @@
+from django.urls import reverse
+
 import account.models
 from account.models import *
 from django.db import models
@@ -34,3 +36,5 @@ class Startup(models.Model):
         s = Startupper.objects.get(id = self.startupper_id)
         return s.first_name + " " + s.last_name
 
+    def get_absolute_url(self):
+        return reverse('project', kwargs={'startup_id': self.pk})
