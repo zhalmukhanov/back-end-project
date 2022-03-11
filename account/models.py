@@ -17,5 +17,3 @@ class Startupper(models.Model):
     birth_date = models.DateTimeField()
     gender = models.CharField(max_length=1)
 
-
-
