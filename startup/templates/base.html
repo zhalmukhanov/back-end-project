@@ -8,7 +8,7 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <header class="text-gray-600 body-font">
+    <header class="text-gray-600 body-font border-b-2 border-indigo-100">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
@@ -29,10 +29,10 @@
           </button>
         </div>
       </header>
-    <section class="container min-h-screen w-100 mx-auto">
+    <section class="flex min-h-screen">
       {% block body %}{% endblock %}
     </section>
-    <footer class="text-gray-600 body-font ">
+    <footer class="text-gray-600 body-font border-t-2 border-indigo-100">
         <div class="container px-5 py-8 mx-auto flex justify-between  items-center sm:flex-row flex-col">
           <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
@@ -51,6 +51,37 @@
 
         </div>
       </footer>
+
+<style>
+     input[type='radio']:after {
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #d1d3d1;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #4f46e5;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+    </style>
 
     <script>
         let menu = document.getElementById("menu");
