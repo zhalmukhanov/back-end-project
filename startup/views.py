@@ -1,4 +1,3 @@
-import switch as switch
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import DetailView
@@ -56,6 +55,7 @@ class Project(DetailView):
     model = Startup
     template_name = 'startup.html'
     context_object_name = 'project'
+    
 
 
 def add_startup(request):
@@ -65,6 +65,7 @@ def add_startup(request):
     description = request.POST.get('description')
     category = request.POST.get('category')
     initial_capital = request.POST.get('initial_capital')
+    image = request.POST.get('image')
 
     startupper.startup_set.create(
         title=title,
