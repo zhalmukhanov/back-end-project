@@ -1,4 +1,4 @@
-import switch as switch
+from django.core.paginator import Paginator, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import DetailView
@@ -9,12 +9,15 @@ from account.models import Startupper
 
 # Create your views here.
 def startups(request):
+    page = 0
+    paginator = 0
     startup_list = Startup.objects.order_by('-pk')
     startuppers = Startupper.objects.all()
 
-    if request.method == 'POST':
-        category = request.POST.get('filter_category')
-        collected_amount = request.POST.get('collected_amount')
+    page = request.GET.get('page', 1)
+    if request.GET.get('filter_category'):
+        category = request.GET.get('filter_category')
+        collected_amount = request.GET.get('collected_amount')
 
         startup = 0
 
@@ -46,11 +49,19 @@ def startups(request):
                 if i.percentage() >= 75:
                     startup_list.append(i)
 
+
+    paginator = Paginator(startup_list, 5)
+    try:
+        startup_list = paginator.page(page)
+    except PageNotAnInteger:
+        startup_list = paginator.page(1)
+
     context = {
         'startups': startup_list,
         'startuppers': startuppers
     }
     return render(request, 'startups.html', context=context)
+
 
 class Project(DetailView):
     model = Startup
@@ -77,4 +88,3 @@ def add_startup(request):
     this_startup = Startup.objects.order_by('-pk')[0]
     url = '/startups/project/' + str(this_startup.pk)
     return HttpResponseRedirect(url)
-

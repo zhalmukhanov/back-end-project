@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head >
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="flex flex-col h-full">
+    <header class="grow-0 shrink-0 basis-auto text-gray-600 body-font border-b-2 border-indigo-100">
+        <div class="container mx-auto flex flex-wrap justify-center p-5 flex-col md:flex-row items-center">
+          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Crowdfunding</span>
+          </a>
+        </div>
+      </header>
+    <section  class="shrink-0 basis-auto grow flex justify-center align-center w-full">
+      {% block body %}{% endblock %}
+    </section>
+    <footer class="grow-0 shrink-0 basis-auto text-gray-600 body-font border-t-2 border-indigo-100">
+        <div class="container px-5 py-8 mx-auto flex justify-between  items-center sm:flex-row flex-col">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">Crowdfunding</span>
+            <p class="text-sm text-gray-500">
+                <a href="https://github.com/zhalmukhanov" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@zhalmukhanovadilbek | </a>
+                <a href="https://github.com/mlyazzat" class="text-gray-600 ml-" rel="noopener noreferrer" target="_blank">@muratlyazzat </a>
+                </p>
+            <p class="text-sm text-gray-500">© 2022 Crowdfunding
+            </p>
+          </a>
+
+
+
+        </div>
+      </footer>
+
+<style>
+     input[type='radio']:after {
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #d1d3d1;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #4f46e5;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+    </style>
+
+</body>
+</html>
