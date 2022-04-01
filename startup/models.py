@@ -15,6 +15,8 @@ class Startup(models.Model):
     date_uploaded = models.DateTimeField(auto_now_add=True)
     initial_capital = models.IntegerField()
     accumulated_capital = models.IntegerField()
+    image = models.ImageField(null=True, blank=True, upload_to="images/")
+
 
     categories = [
         ('IT', 'IT'),

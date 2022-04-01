@@ -7,12 +7,11 @@
   <div class="grid justify-items-center mt-4">
       <button onclick="showMenu()" class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 focus:outline-none  py-2 px-7 bg-indigo-600 text-white rounded text-base hover:bg-indigo">Add Startup</button>
   </div>
-
        {% for startup in startups %}
       <section class="text-gray-600 body-font overflow-hidden mx-auto">
         <div class="container px-5 py-10 mx-auto">
           <div class="lg:w-5/5 mx-auto flex flex-wrap">
-            <img alt="ecommerce" class="lg:w-2/5 w-full h-80 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+            <img alt="image" class="lg:w-2/5 w-full h-80 object-cover object-center rounded" src="/images/  {{ startup.image }}" />
 
             <div class="lg:w-3/5 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 class="text-sm title-font text-gray-500 tracking-widest">{{startup.s_name}}</h2>
@@ -26,7 +25,7 @@
                   <span class="text-sm font-medium text-indigo-600 dark:text-white">{{ startup.percentage }}%</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                  <div class="bg-indigo-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: {{startup.percentage}}%">{{startup.accumulated_capital}}$</div>
+                  <div class="bg-indigo-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width:{{startup.percentage}}%">{{startup.accumulated_capital}}$</div>
                 </div>
               </div>
 
@@ -236,7 +235,6 @@
         </button>
      </form>
       </section>
-
-
+</section>
 
 {% endblock %}
