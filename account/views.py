@@ -1,10 +1,11 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from account.forms import *
-
+from startup.models import *
+from account.models import *
 
 def index(request):
     if request.user.is_authenticated:
@@ -17,7 +18,23 @@ def index(request):
 
 
 def myroom(request):
-    return HttpResponse("MyRoom")
+    if request.user.is_authenticated:
+        is_authenticated = True
+        user = request.user
+        user_id = request.user.id
+        startupper = UserStartupper.objects.get(user_id=user_id)
+        startup_list = Startups.objects.filter(startupper_id=startupper.pk)
+        startup_count = len(startup_list)
+        last_startup_list = startup_list.order_by('-id')[:3]
+
+    context = {
+        'user': user,
+        'is_authenticated': is_authenticated,
+        'startupper': startupper,
+        'startup_list': last_startup_list,
+        'startup_count': startup_count
+    }
+    return render(request, 'my_room_startupper.html', context=context)
 
 
 def login(request):
@@ -37,6 +54,13 @@ def login(request):
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
+
+
+def logout(request):
+    auth.logout(request)
+
+    url = '/'
+    return HttpResponseRedirect(url)
 
 
 def registerUserInvestor(request):

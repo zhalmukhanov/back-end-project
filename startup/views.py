@@ -3,16 +3,23 @@ from django.core.paginator import Paginator, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import DetailView
-from startup.models import Startup
-from account.models import Startupper
+from startup.models import *
+from account.models import *
 
 
 # Create your views here.
 def startups(request):
+    if request.user.is_authenticated:
+        is_authenticated = True
+        username = request.user.username
+    else:
+        is_authenticated = False
+        username = 'not logged in'
+
     page = 0
     paginator = 0
-    startup_list = Startup.objects.order_by('-pk')
-    startuppers = Startupper.objects.all()
+    startup_list = Startups.objects.order_by('-pk')
+    startuppers = UserStartupper.objects.all()
 
     page = request.GET.get('page', 1)
     if request.GET.get('filter_category'):
@@ -22,9 +29,9 @@ def startups(request):
         startup = 0
 
         if category == 'All':
-            startup = Startup.objects.order_by('-pk')
+            startup = Startups.objects.order_by('-pk')
         else:
-            startup = Startup.objects.filter(category=category).order_by('-pk')
+            startup = Startups.objects.filter(category=category).order_by('-pk')
 
         startups = list(startup)
 
@@ -58,28 +65,40 @@ def startups(request):
 
     context = {
         'startups': startup_list,
-        'startuppers': startuppers
+        'startuppers': startuppers,
+        'is_authenticated': is_authenticated,
+        'username': username
     }
     return render(request, 'startups.html', context=context)
 
 
-class Project(DetailView):
-    model = Startup
-    template_name = 'startup.html'
-    context_object_name = 'project'
-    
+def startup_page(request, pk):
+    if request.user.is_authenticated:
+        is_authenticated = True
+        username = request.user.username
+    else:
+        is_authenticated = False
+        username = 'not logged in'
 
+    startup = Startups.objects.get(pk=pk)
+
+    context = {
+        'project': startup,
+        'is_authenticated': is_authenticated,
+        'username': username
+    }
+    return render(request, 'startup.html', context=context)
 
 def add_startup(request):
-    startupper_id = request.POST.get('startupper')
-    startupper = Startupper.objects.get(id=startupper_id)
+    user_id = request.user.id
+    startupper = UserStartupper.objects.get(user_id=user_id)
     title = request.POST.get('title')
     description = request.POST.get('description')
     category = request.POST.get('category')
     initial_capital = request.POST.get('initial_capital')
     image = request.POST.get('image')
 
-    startupper.startup_set.create(
+    startupper.startups_set.create(
         title=title,
         description=description,
         category=category,
@@ -87,6 +106,6 @@ def add_startup(request):
         accumulated_capital=0
     )
 
-    this_startup = Startup.objects.order_by('-pk')[0]
+    this_startup = Startups.objects.order_by('-pk')[0]
     url = '/startups/project/' + str(this_startup.pk)
     return HttpResponseRedirect(url)

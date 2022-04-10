@@ -3,6 +3,7 @@ from account.models import UserInvestor, UserStartupper
 from startup.models import *
 
 admin.site.register(Startup)
+admin.site.register(Startups)
 # admin.site.register(Startupper)
 # admin.site.register(Investor)
 admin.site.register(UserInvestor)
