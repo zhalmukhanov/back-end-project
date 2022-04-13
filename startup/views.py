@@ -109,3 +109,7 @@ def add_startup(request):
     this_startup = Startups.objects.order_by('-pk')[0]
     url = '/startups/project/' + str(this_startup.pk)
     return HttpResponseRedirect(url)
+
+def main_page(request):
+
+    return render(request, 'main.html')
